@@ -1,0 +1,28 @@
+<div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    <div class="card shadow p-4" style="min-width: 320px; max-width: 400px; width: 100%;">
+        <h2 class="mb-4 text-center">Iniciar Sesión</h2>
+        <form [formGroup]="loguinForm" (ngSubmit)="login()">
+            <div class="mb-3">
+                <label for="float-input" class="form-label">Correo electrónico</label>
+                <input id="float-input" formControlName="userid" type="email" class="form-control" required>
+                <div class="text-danger small" *ngIf="userid!.invalid && (userid!.dirty || userid!.touched)">
+                    <div *ngIf="userid!.errors?.['required']">Este campo es requerido</div>
+                    <div *ngIf="userid!.errors?.['email']">Correo inválido</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" id="password" formControlName="password" class="form-control" required>
+                <div class="text-danger small" *ngIf="password!.invalid && (password!.dirty || password!.touched)">
+                    <div *ngIf="password!.errors?.['required']">Este campo es requerido</div>
+                    <div *ngIf="password!.errors?.['minlength']">Por lo menos 8 caracteres.</div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-primary" [disabled]="loguinForm.invalid">Ingresar</button>
+                <button type="button" class="btn btn-link" (click)="signIn()">Registrarse</button>
+            </div>
+            <div class="text-danger mt-3" *ngIf="errorMessage">{{ errorMessage }}</div>
+        </form>
+    </div>
+</div>

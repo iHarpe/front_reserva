@@ -1,0 +1,35 @@
+<div class="container py-4">
+    <h2 class="mb-4 text-center">Eventos Disponibles</h2>
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>ID Evento</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Máx. Asistentes</th>
+                    <th>Asistentes</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of eventos">
+                    <td>{{e.idevent}}</td>
+                    <td>{{e.nombre}}</td>
+                    <td>{{e.descripcion}}</td>
+                    <td>{{e.fechaevento | date:'shortDate'}}</td>
+                    <td>{{e.asistentesmax}}</td>
+                    <td>{{e.asistentestot}}</td>
+                    <td>
+                        <button class="btn btn-success btn-sm" (click)="reservar(e)"
+                            [disabled]="e.asistentestot >= e.asistentesmax">
+                            Reservar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="alert alert-success mt-3" *ngIf="mensajeReserva">{{ mensajeReserva }}</div>
+</div>

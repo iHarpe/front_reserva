@@ -1,0 +1,34 @@
+<div class="container py-4">
+  <h2 class="text-center mb-4">Mis Reservas</h2>
+  
+  <div class="alert alert-danger" *ngIf="errorMensaje">{{ errorMensaje }}</div>
+
+  <div class="table-responsive" *ngIf="bookings.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Fecha del Evento</th>
+          <th>Fecha de Reserva</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.eventName }}</td>
+          <td>{{ booking.eventDate | date:'short' }}</td>
+          <td>{{ booking.fechareserva | date:'short' }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="cancelarReserva(booking)">
+              Cancelar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert alert-info" *ngIf="bookings.length === 0">
+    No tienes reservas activas.
+  </div>
+</div>
